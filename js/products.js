@@ -1,0 +1,101 @@
+// Product catalog. image: emoji placeholder for now, swap with real photo URL later (img field).
+window.TJZ_CATS = [
+  { id: "diagnostics", icon: "🩺", key: "cat_diagnostics", grad: "g1" },
+  { id: "respiratory", icon: "🫁", key: "cat_respiratory", grad: "g2" },
+  { id: "mobility", icon: "🦽", key: "cat_mobility", grad: "g3" },
+  { id: "homecare", icon: "🛏️", key: "cat_homecare", grad: "g4" },
+  { id: "dental", icon: "🦷", key: "cat_dental", grad: "g5" },
+  { id: "supplies", icon: "🧤", key: "cat_supplies", grad: "g6" }
+];
+
+window.TJZ_PRODUCTS = [
+  // Diagnostics & monitoring
+  { id: "bp-monitor", cat: "diagnostics", icon: "🩺", grad: "g1", price: 32.0, oldPrice: 39.0, badge: "bestseller", pop: 98,
+    en: { name: "Automatic Blood Pressure Monitor", desc: "Upper-arm digital blood pressure monitor with large backlit display, irregular heartbeat detection and memory for 2 users x 120 readings. Includes universal cuff 22-42 cm, carry case and batteries.", specs: ["Clinically validated accuracy", "2-user memory, 240 readings", "Irregular heartbeat indicator", "Universal cuff 22-42 cm", "2-year warranty"] },
+    ar: { name: "جهاز قياس ضغط الدم الأوتوماتيكي", desc: "جهاز رقمي لقياس ضغط الدم من أعلى الذراع مع شاشة كبيرة مضيئة، وكشف عدم انتظام ضربات القلب، وذاكرة لمستخدمين اثنين بواقع 120 قراءة لكل منهما. يشمل كف شامل 22-42 سم وحقيبة وبطاريات.", specs: ["دقة معتمدة سريرياً", "ذاكرة لمستخدمين، 240 قراءة", "مؤشر عدم انتظام النبض", "كف شامل 22-42 سم", "كفالة سنتان"] } },
+  { id: "pulse-oximeter", cat: "diagnostics", icon: "📟", grad: "g1", price: 11.5, oldPrice: 15.0, badge: "sale", pop: 95,
+    en: { name: "Fingertip Pulse Oximeter", desc: "Compact SpO2 and pulse rate monitor with OLED display and one-button operation. Suitable for adults and children over 4 years.", specs: ["SpO2 and pulse rate in 8 seconds", "Rotating OLED display", "Auto power off", "Includes lanyard and batteries"] },
+    ar: { name: "جهاز قياس الأكسجين بالإصبع", desc: "جهاز مدمج لقياس تشبع الأكسجين ونبض القلب مع شاشة OLED وتشغيل بزر واحد. مناسب للكبار والأطفال فوق 4 سنوات.", specs: ["قراءة الأكسجين والنبض خلال 8 ثوان", "شاشة OLED دوارة", "إطفاء تلقائي", "يشمل حبل تعليق وبطاريات"] } },
+  { id: "ir-thermometer", cat: "diagnostics", icon: "🌡️", grad: "g1", price: 14.0, pop: 88,
+    en: { name: "Non-Contact Infrared Thermometer", desc: "Forehead thermometer with 1-second reading, fever alarm and 32-reading memory. Measures body, room and object temperature.", specs: ["1-second non-contact reading", "Fever colour alarm", "Body / object / room modes", "32-reading memory"] },
+    ar: { name: "ميزان حرارة بالأشعة تحت الحمراء بدون لمس", desc: "ميزان حرارة للجبهة بقراءة خلال ثانية واحدة، مع إنذار الحمى وذاكرة 32 قراءة. يقيس حرارة الجسم والغرفة والأسطح.", specs: ["قراءة خلال ثانية بدون لمس", "إنذار ملون للحمى", "أوضاع الجسم / الأسطح / الغرفة", "ذاكرة 32 قراءة"] } },
+  { id: "glucose-kit", cat: "diagnostics", icon: "🩸", grad: "g1", price: 22.0, badge: "bestseller", pop: 92,
+    en: { name: "Blood Glucose Meter Kit", desc: "Complete glucometer kit with 50 test strips, 50 lancets, lancing device and carry case. Results in 5 seconds from a tiny 0.5 uL sample.", specs: ["Results in 5 seconds", "50 strips + 50 lancets included", "500-reading memory with averages", "No coding required"] },
+    ar: { name: "طقم جهاز قياس السكر", desc: "طقم كامل لقياس سكر الدم مع 50 شريط فحص و50 إبرة وقلم وخز وحقيبة. النتيجة خلال 5 ثوان من عينة صغيرة 0.5 ميكرولتر.", specs: ["النتيجة خلال 5 ثوان", "يشمل 50 شريط و50 إبرة", "ذاكرة 500 قراءة مع المعدلات", "لا يحتاج ترميز"] } },
+  { id: "stethoscope", cat: "diagnostics", icon: "🫀", grad: "g1", price: 18.5, pop: 70,
+    en: { name: "Dual-Head Stethoscope", desc: "Professional dual-head stethoscope with stainless steel chestpiece and soft-seal eartips. Clear acoustics for heart, lung and blood pressure sounds.", specs: ["Stainless steel chestpiece", "Adult and pediatric sides", "Spare eartips and diaphragm included"] },
+    ar: { name: "سماعة طبيب مزدوجة الرأس", desc: "سماعة طبية احترافية مزدوجة الرأس برأس ستانلس ستيل وسدادات أذن مريحة. صوت واضح لنبض القلب والرئتين وقياس الضغط.", specs: ["رأس ستانلس ستيل", "جهة للكبار وجهة للأطفال", "يشمل سدادات وحجاب احتياطي"] } },
+  { id: "ecg-monitor", cat: "diagnostics", icon: "📈", grad: "g1", price: 95.0, badge: "new", pop: 60,
+    en: { name: "Portable ECG Monitor", desc: "Pocket single-lead ECG recorder with 30-second rhythm capture, smartphone app sync and PDF export you can share with your doctor.", specs: ["30-second single-lead ECG", "Bluetooth app with PDF export", "Detects common rhythm irregularities", "Rechargeable battery"] },
+    ar: { name: "جهاز تخطيط قلب محمول", desc: "جهاز جيب لتسجيل تخطيط القلب أحادي القطب خلال 30 ثانية، مع مزامنة لتطبيق الهاتف وتصدير PDF لمشاركته مع طبيبك.", specs: ["تخطيط 30 ثانية أحادي القطب", "تطبيق بلوتوث مع تصدير PDF", "يكشف اضطرابات النظم الشائعة", "بطارية قابلة للشحن"] } },
+
+  // Respiratory care
+  { id: "nebulizer", cat: "respiratory", icon: "💨", grad: "g2", price: 26.0, oldPrice: 32.0, badge: "bestseller", pop: 96,
+    en: { name: "Compressor Nebulizer", desc: "Reliable piston compressor nebulizer for home treatment of asthma and respiratory conditions. Includes adult and child masks, mouthpiece and filters.", specs: ["Full family mask set included", "Fine particle size for deep delivery", "Low noise operation", "2-year warranty"] },
+    ar: { name: "جهاز بخاخ (نيبولايزر) بضاغط", desc: "جهاز بخار منزلي موثوق لعلاج الربو وأمراض الجهاز التنفسي. يشمل قناع للكبار وقناع للأطفال وقطعة فم وفلاتر.", specs: ["أقنعة لكامل العائلة", "حجم جزيئات دقيق لوصول أعمق", "تشغيل منخفض الضجيج", "كفالة سنتان"] } },
+  { id: "mesh-nebulizer", cat: "respiratory", icon: "🌬️", grad: "g2", price: 38.0, badge: "new", pop: 72,
+    en: { name: "Portable Mesh Nebulizer", desc: "Silent pocket-size mesh nebulizer that runs on batteries or USB. Ideal for children and travel, works at any angle.", specs: ["Virtually silent", "USB or battery powered", "Works at any angle", "Adult and child masks included"] },
+    ar: { name: "جهاز بخاخ شبكي محمول", desc: "جهاز بخار شبكي صامت بحجم الجيب يعمل بالبطاريات أو USB. مثالي للأطفال والسفر ويعمل بأي زاوية.", specs: ["صامت تقريباً", "يعمل بالبطارية أو USB", "يعمل بأي زاوية", "يشمل قناع كبار وأطفال"] } },
+  { id: "oxygen-concentrator", cat: "respiratory", icon: "🫁", grad: "g2", price: 420.0, oldPrice: 520.0, badge: "sale", pop: 80,
+    en: { name: "Oxygen Concentrator 5L", desc: "Home oxygen concentrator with adjustable flow 1-5 L/min, 93% +-3 oxygen purity, nebulizer outlet and remote control. Continuous 24/7 operation.", specs: ["Flow 1-5 L/min, purity 93% +-3", "Continuous 24/7 operation", "Built-in nebulizer outlet", "Remote control and timer", "1-year warranty"] },
+    ar: { name: "جهاز مولد أكسجين 5 لتر", desc: "مولد أكسجين منزلي بتدفق قابل للتعديل 1-5 لتر/دقيقة، ونقاء أكسجين 93% +-3، ومخرج بخار وجهاز تحكم عن بعد. تشغيل متواصل على مدار الساعة.", specs: ["تدفق 1-5 لتر/دقيقة، نقاء 93% +-3", "تشغيل متواصل 24/7", "مخرج بخاخ مدمج", "ريموت ومؤقت", "كفالة سنة"] } },
+  { id: "suction-machine", cat: "respiratory", icon: "🌀", grad: "g2", price: 135.0, pop: 50,
+    en: { name: "Portable Suction Machine", desc: "Medical aspirator for home care with 1L collection bottle, adjustable vacuum and overflow protection. Suitable for airway secretion removal.", specs: ["Adjustable vacuum pressure", "1L autoclavable bottle", "Overflow protection", "Includes suction catheters"] },
+    ar: { name: "جهاز شفط محمول", desc: "جهاز شفط طبي للعناية المنزلية مع قارورة تجميع 1 لتر وضغط قابل للتعديل وحماية من الفيضان. مناسب لشفط إفرازات مجرى التنفس.", specs: ["ضغط شفط قابل للتعديل", "قارورة 1 لتر قابلة للتعقيم", "حماية من الفيضان", "يشمل قساطر شفط"] } },
+
+  // Mobility & rehab
+  { id: "wheelchair", cat: "mobility", icon: "🦽", grad: "g3", price: 110.0, oldPrice: 135.0, badge: "bestseller", pop: 90,
+    en: { name: "Folding Steel Wheelchair", desc: "Standard folding wheelchair with padded armrests, swing-away footrests and solid rear wheels. Supports up to 120 kg, seat width 46 cm.", specs: ["Folds flat for car transport", "Capacity 120 kg, seat 46 cm", "Swing-away footrests", "Rear hand brakes"] },
+    ar: { name: "كرسي متحرك قابل للطي", desc: "كرسي متحرك قياسي قابل للطي مع مساند أذرع مبطنة ومساند أقدام متحركة وعجلات خلفية مصمتة. يتحمل حتى 120 كغ، عرض المقعد 46 سم.", specs: ["يطوى بسهولة لوضعه في السيارة", "حمولة 120 كغ، مقعد 46 سم", "مساند أقدام متحركة", "فرامل يدوية خلفية"] } },
+  { id: "rollator", cat: "mobility", icon: "🚶", grad: "g3", price: 78.0, pop: 65,
+    en: { name: "4-Wheel Rollator with Seat", desc: "Lightweight aluminium rollator walker with padded seat, backrest, storage bag and hand brakes. Height-adjustable handles.", specs: ["Aluminium frame 7.5 kg", "Padded seat and backrest", "Locking hand brakes", "Shopping bag included"] },
+    ar: { name: "مشاية 4 عجلات مع مقعد", desc: "مشاية ألمنيوم خفيفة مع مقعد مبطن ومسند ظهر وحقيبة تخزين وفرامل يدوية. مقابض قابلة لتعديل الارتفاع.", specs: ["هيكل ألمنيوم 7.5 كغ", "مقعد ومسند مبطن", "فرامل يدوية قافلة", "تشمل حقيبة تسوق"] } },
+  { id: "crutches", cat: "mobility", icon: "🩼", grad: "g3", price: 13.5, pop: 55,
+    en: { name: "Underarm Crutches (Pair)", desc: "Height-adjustable aluminium crutches with padded underarm supports and non-slip rubber tips. Sold as a pair.", specs: ["Adjustable height", "Padded grips and supports", "Non-slip tips", "Capacity 100 kg"] },
+    ar: { name: "عكازات تحت الإبط (زوج)", desc: "عكازات ألمنيوم قابلة لتعديل الارتفاع مع وسائد مريحة تحت الإبط ورؤوس مطاطية مانعة للانزلاق. تباع كزوج.", specs: ["ارتفاع قابل للتعديل", "مقابض ووسائد مبطنة", "رؤوس مانعة للانزلاق", "حمولة 100 كغ"] } },
+  { id: "hospital-bed", cat: "mobility", icon: "🛏️", grad: "g3", price: 590.0, badge: "new", pop: 58,
+    en: { name: "Electric Hospital Bed (3 Functions)", desc: "Three-function electric home-care bed with remote-controlled backrest, leg rest and height adjustment. Includes side rails and ABS head/foot boards.", specs: ["3 electric functions with remote", "Collapsible aluminium side rails", "Castor wheels with brakes", "Mattress available separately"] },
+    ar: { name: "سرير طبي كهربائي (3 حركات)", desc: "سرير عناية منزلية كهربائي بثلاث حركات مع تحكم عن بعد لمسند الظهر ومسند الأرجل والارتفاع. يشمل حواجز جانبية وألواح رأس وقدم ABS.", specs: ["3 حركات كهربائية بريموت", "حواجز ألمنيوم قابلة للطي", "عجلات مع فرامل", "الفرشة تباع بشكل منفصل"] } },
+
+  // Home care
+  { id: "air-mattress", cat: "homecare", icon: "🛌", grad: "g4", price: 42.0, oldPrice: 55.0, badge: "sale", pop: 75,
+    en: { name: "Anti-Bedsore Air Mattress", desc: "Bubble-type alternating pressure mattress with quiet pump for bedridden patient care. Helps prevent and relieve pressure ulcers.", specs: ["Alternating pressure system", "Quiet adjustable pump", "Repair kit included", "Fits standard hospital beds"] },
+    ar: { name: "فرشة هوائية ضد قرح الفراش", desc: "فرشة ضغط متناوب بنظام الفقاعات مع مضخة هادئة للعناية بالمرضى طريحي الفراش. تساعد في الوقاية من قرح الضغط وتخفيفها.", specs: ["نظام ضغط متناوب", "مضخة هادئة قابلة للتعديل", "تشمل طقم تصليح", "تناسب الأسرة الطبية القياسية"] } },
+  { id: "tens-unit", cat: "homecare", icon: "⚡", grad: "g4", price: 36.0, pop: 68,
+    en: { name: "TENS + EMS Therapy Device", desc: "Dual-channel TENS and muscle stimulation device with 20 programs for pain relief and rehabilitation. Includes 8 electrode pads.", specs: ["TENS + EMS dual channel", "20 preset programs", "8 reusable electrode pads", "Rechargeable"] },
+    ar: { name: "جهاز علاج TENS + EMS", desc: "جهاز ثنائي القنوات للتخفيف من الألم وتحفيز العضلات مع 20 برنامجاً للعلاج والتأهيل. يشمل 8 لاصقات أقطاب.", specs: ["قناتان TENS + EMS", "20 برنامجاً جاهزاً", "8 لاصقات قابلة لإعادة الاستخدام", "قابل للشحن"] } },
+  { id: "heat-lamp", cat: "homecare", icon: "💡", grad: "g4", price: 28.0, pop: 45,
+    en: { name: "Infrared Therapy Heat Lamp", desc: "Adjustable infrared lamp for muscle pain relief, improved circulation and physiotherapy at home. 275W with flexible arm and timer.", specs: ["275W infrared bulb", "Adjustable flexible arm", "Built-in timer", "Floor stand included"] },
+    ar: { name: "مصباح العلاج بالأشعة تحت الحمراء", desc: "مصباح أشعة تحت حمراء قابل للتعديل لتخفيف آلام العضلات وتحسين الدورة الدموية والعلاج الطبيعي في المنزل. قوة 275 واط مع ذراع مرن ومؤقت.", specs: ["لمبة 275 واط", "ذراع مرن قابل للتعديل", "مؤقت مدمج", "قاعدة أرضية"] } },
+  { id: "wrist-splint", cat: "homecare", icon: "🤲", grad: "g4", price: 9.5, pop: 40,
+    en: { name: "Adjustable Wrist Support Splint", desc: "Breathable wrist brace with removable aluminium splint for carpal tunnel, sprains and post-cast support. Fits left or right hand.", specs: ["Removable aluminium stay", "Breathable fabric", "Universal left/right fit", "Adjustable straps"] },
+    ar: { name: "دعامة معصم قابلة للتعديل", desc: "دعامة معصم بقماش يسمح بالتهوية مع جبيرة ألمنيوم قابلة للإزالة، لمتلازمة النفق الرسغي والالتواءات وما بعد الجبس. تناسب اليد اليمنى واليسرى.", specs: ["جبيرة ألمنيوم قابلة للإزالة", "قماش يسمح بالتهوية", "تناسب اليدين", "أحزمة قابلة للتعديل"] } },
+
+  // Dental equipment
+  { id: "ultrasonic-scaler", cat: "dental", icon: "🦷", grad: "g5", price: 165.0, oldPrice: 195.0, badge: "bestseller", pop: 85,
+    en: { name: "Ultrasonic Dental Scaler", desc: "Clinic-grade piezo ultrasonic scaler with detachable handpiece, 5 scaling tips and automatic frequency tracking. For scaling, perio and endo applications.", specs: ["Piezo technology, auto frequency", "Detachable autoclavable handpiece", "5 tips included", "Compatible with common tip systems"] },
+    ar: { name: "جهاز تنظيف الأسنان بالموجات فوق الصوتية", desc: "جهاز سكيلر بيزو بجودة العيادات مع قبضة قابلة للفصل و5 رؤوس وتتبع تلقائي للتردد. لإزالة الجير وعلاجات اللثة والعصب.", specs: ["تقنية بيزو بتردد تلقائي", "قبضة قابلة للفصل والتعقيم", "يشمل 5 رؤوس", "متوافق مع أنظمة الرؤوس الشائعة"] } },
+  { id: "curing-light", cat: "dental", icon: "🔦", grad: "g5", price: 85.0, pop: 62,
+    en: { name: "LED Curing Light", desc: "Cordless wide-spectrum LED curing light with 1600 mW/cm2 output, 4 modes and built-in radiometer. Cures all common composites.", specs: ["1600 mW/cm2 output", "4 curing modes", "Built-in radiometer", "2 rechargeable batteries"] },
+    ar: { name: "جهاز ضوء معالجة LED", desc: "جهاز ضوء معالجة لاسلكي واسع الطيف بقوة 1600 مللي واط/سم2، مع 4 أوضاع ومقياس إشعاع مدمج. يناسب جميع الكمبوزت الشائعة.", specs: ["قوة 1600 مللي واط/سم2", "4 أوضاع معالجة", "مقياس إشعاع مدمج", "بطاريتان قابلتان للشحن"] } },
+  { id: "autoclave", cat: "dental", icon: "♨️", grad: "g5", price: 1150.0, pop: 48,
+    en: { name: "Class B Autoclave 18L", desc: "Class B vacuum autoclave for dental and medical clinics with 18L chamber, LCD display, built-in printer port and 3 sterilization trays.", specs: ["Class B vacuum cycles", "18L stainless chamber", "LCD cycle display", "USB data logging", "1-year warranty"] },
+    ar: { name: "أوتوكلاف فئة B سعة 18 لتر", desc: "جهاز تعقيم فراغي فئة B لعيادات الأسنان والعيادات الطبية بحجرة 18 لتر وشاشة LCD ومنفذ طابعة و3 صواني تعقيم.", specs: ["دورات فراغية فئة B", "حجرة ستانلس 18 لتر", "شاشة LCD للدورات", "تسجيل بيانات USB", "كفالة سنة"] } },
+  { id: "dental-loupes", cat: "dental", icon: "👓", grad: "g5", price: 145.0, badge: "new", pop: 42,
+    en: { name: "Dental Loupes 3.5x with LED Headlight", desc: "Binocular magnifying loupes 3.5x with adjustable pupil distance and clip-on LED headlight. Ideal for dental and surgical precision work.", specs: ["3.5x magnification", "Adjustable pupil distance", "Rechargeable LED headlight", "Carry case included"] },
+    ar: { name: "نظارة تكبير أسنان 3.5x مع إضاءة LED", desc: "نظارة تكبير ثنائية العدسات 3.5x مع مسافة بؤبؤ قابلة للتعديل وإضاءة LED قابلة للتثبيت. مثالية لأعمال الأسنان والجراحة الدقيقة.", specs: ["تكبير 3.5x", "مسافة بؤبؤ قابلة للتعديل", "إضاءة LED قابلة للشحن", "تشمل حقيبة"] } },
+
+  // Clinic supplies
+  { id: "exam-couch", cat: "supplies", icon: "🛋️", grad: "g6", price: 210.0, pop: 52,
+    en: { name: "Examination Couch with Paper Roll Holder", desc: "Steel-frame examination couch with adjustable backrest, washable PU upholstery and paper roll holder. For clinics and treatment rooms.", specs: ["Adjustable backrest", "Washable PU upholstery", "Paper roll holder", "Capacity 150 kg"] },
+    ar: { name: "سرير فحص مع حامل رول ورق", desc: "سرير فحص بهيكل فولاذي ومسند ظهر قابل للتعديل وتنجيد PU قابل للغسل وحامل رول ورق. للعيادات وغرف العلاج.", specs: ["مسند ظهر قابل للتعديل", "تنجيد PU قابل للغسل", "حامل رول ورق", "حمولة 150 كغ"] } },
+  { id: "nitrile-gloves", cat: "supplies", icon: "🧤", grad: "g6", price: 4.5, badge: "bestseller", pop: 99,
+    en: { name: "Nitrile Examination Gloves (Box of 100)", desc: "Powder-free blue nitrile gloves, textured fingertips, latex-free. Available in S, M and L. Price per box of 100.", specs: ["Powder and latex free", "Textured fingertips", "Sizes S / M / L", "Box of 100"] },
+    ar: { name: "قفازات نتريل للفحص (علبة 100)", desc: "قفازات نتريل زرقاء خالية من البودرة واللاتكس بأطراف محببة. متوفرة بمقاسات S وM وL. السعر لعلبة 100 قفاز.", specs: ["خالية من البودرة واللاتكس", "أطراف أصابع محببة", "مقاسات S / M / L", "علبة 100"] } },
+  { id: "instrument-trolley", cat: "supplies", icon: "🛒", grad: "g6", price: 88.0, pop: 44,
+    en: { name: "Stainless Instrument Trolley (2 Shelves)", desc: "Mobile stainless steel instrument trolley with two shelves, guard rails and smooth-rolling castors. Easy no-tool assembly.", specs: ["Stainless steel shelves", "Guard rails on both shelves", "Smooth castor wheels", "Tool-free assembly"] },
+    ar: { name: "عربة أدوات ستانلس (رفان)", desc: "عربة أدوات متنقلة من الستانلس ستيل برفين وحواف حماية وعجلات سلسة. تركيب سهل بدون أدوات.", specs: ["رفوف ستانلس ستيل", "حواف حماية للرفين", "عجلات سلسة", "تركيب بدون أدوات"] } },
+  { id: "sterilization-pouches", cat: "supplies", icon: "📦", grad: "g6", price: 7.5, pop: 58,
+    en: { name: "Self-Seal Sterilization Pouches (Box of 200)", desc: "Self-sealing autoclave pouches 90x230 mm with internal and external indicators. Compatible with steam and EO sterilization.", specs: ["90x230 mm, box of 200", "Internal + external indicators", "Steam and EO compatible", "Medical-grade paper/film"] },
+    ar: { name: "أكياس تعقيم ذاتية الإغلاق (علبة 200)", desc: "أكياس أوتوكلاف ذاتية الإغلاق 90x230 ملم مع مؤشرات داخلية وخارجية. متوافقة مع التعقيم بالبخار وغاز EO.", specs: ["90x230 ملم، علبة 200", "مؤشرات داخلية وخارجية", "متوافقة مع البخار وEO", "ورق وفيلم بجودة طبية"] } }
+];
