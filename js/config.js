@@ -5,7 +5,7 @@ window.TJZ_CONFIG = {
   // Optional webhook endpoint that receives tracking events as JSON POSTs
   // (e.g. a Google Apps Script web app URL). Leave empty to disable.
   eventEndpoint: "",
-  currency: "JOD",
+  currency: "SAR",
   freeShippingThreshold: 50,
   shippingFee: 2.5
 };

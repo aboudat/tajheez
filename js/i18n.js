@@ -4,7 +4,7 @@
     en: {
       brand: "Tajheez Medical",
       tagline: "Medical equipment, delivered to your door",
-      topbar: "Free delivery on orders over 50 JOD across Jordan",
+      topbar: "Free delivery on orders over {amount} across Jordan",
       nav_home: "Home",
       nav_shop: "Shop",
       nav_about: "About",
@@ -103,12 +103,12 @@
       cat_mobility: "Mobility & rehab",
       cat_homecare: "Home care",
       cat_supplies: "Clinic supplies",
-      jod: "JOD"
+      sar: "SAR"
     },
     ar: {
       brand: "تجهيز الطبية",
       tagline: "معدات طبية حتى باب بيتك",
-      topbar: "توصيل مجاني للطلبات فوق 50 دينار داخل الأردن",
+      topbar: "توصيل مجاني للطلبات فوق {amount} داخل الأردن",
       nav_home: "الرئيسية",
       nav_shop: "المتجر",
       nav_about: "من نحن",
@@ -207,7 +207,7 @@
       cat_mobility: "الحركة والتأهيل",
       cat_homecare: "العناية المنزلية",
       cat_supplies: "مستلزمات العيادات",
-      jod: "د.أ"
+      sar: "ريال سعودي"
     }
   };
 

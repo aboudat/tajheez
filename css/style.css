@@ -192,6 +192,8 @@ input:focus, select:focus, textarea:focus {
 .price-row { display: flex; align-items: baseline; gap: 8px; margin-top: auto; }
 .price { font-size: 1.12rem; font-weight: 800; color: var(--teal-dark); }
 .old-price { font-size: .85rem; color: var(--muted); text-decoration: line-through; }
+.money { white-space: nowrap; unicode-bidi: isolate; }
+.sar { height: .82em; width: auto; fill: currentColor; vertical-align: -.04em; }
 .card .btn { padding: 10px 14px; font-size: .88rem; border-radius: 10px; }
 
 /* Shop page */

@@ -14,7 +14,16 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
-  function fmt(n) { return n.toFixed(2).replace(/\.00$/, "") + " " + t("jod"); }
+  // Official Saudi Riyal symbol as inline SVG (the Unicode glyph U+20C1 is not in most fonts yet).
+  var SAR_PATHS = '<path d="M699.62,1113.02h0c-20.06,44.48-33.32,92.75-38.4,143.37l424.51-90.24c20.06-44.47,33.31-92.75,38.4-143.37l-424.51,90.24Z"/>' +
+    '<path d="M1085.73,895.8c20.06-44.47,33.32-92.75,38.4-143.37l-330.68,70.33v-135.2l292.27-62.11c20.06-44.47,33.32-92.75,38.4-143.37l-330.68,70.27V66.13c-50.67,28.45-95.67,66.32-132.25,110.99v403.35l-132.25,28.11V0c-50.67,28.44-95.67,66.32-132.25,110.99v525.69l-295.91,62.88c-20.06,44.47-33.33,92.75-38.42,143.37l334.33-71.05v170.26l-358.3,76.14c-20.06,44.47-33.32,92.75-38.4,143.37l375.04-79.7c30.53-6.35,56.77-24.4,73.83-49.24l68.78-101.97v-.02c7.14-10.55,11.3-23.27,11.3-36.97v-149.98l132.25-28.11v270.4l424.53-90.28Z"/>';
+  function sarIcon() {
+    return '<svg class="sar" viewBox="0 0 1124.14 1256.39" role="img" aria-label="' + esc(t("sar")) + '">' + SAR_PATHS + "</svg>";
+  }
+  // Returns HTML: symbol to the left of the amount in both languages.
+  function fmt(n) {
+    return '<span class="money" dir="ltr">' + sarIcon() + " " + n.toFixed(2).replace(/\.00$/, "") + "</span>";
+  }
   function byId(id) { return P.find(function (p) { return p.id === id; }); }
   function L(p) { return p[window.TJZ_LANG] || p.en; }
   function catName(cid) {
@@ -78,7 +87,7 @@
 
   // ---------- chrome (header / footer) ----------
   function renderHeader() {
-    document.getElementById("topbar").textContent = t("topbar");
+    document.getElementById("topbar").innerHTML = esc(t("topbar")).replace("{amount}", fmt(CFG.freeShippingThreshold));
     var route = (location.hash || "#/").split("?")[0];
     document.getElementById("header").innerHTML =
       '<div class="header-inner">' +
