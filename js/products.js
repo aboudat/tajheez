@@ -1,11 +1,11 @@
 // Product catalog. image: emoji placeholder for now, swap with real photo URL later (img field).
 window.TJZ_CATS = [
-  { id: "diagnostics", icon: "🩺", key: "cat_diagnostics", grad: "g1" },
-  { id: "respiratory", icon: "🫁", key: "cat_respiratory", grad: "g2" },
-  { id: "mobility", icon: "🦽", key: "cat_mobility", grad: "g3" },
-  { id: "homecare", icon: "🛏️", key: "cat_homecare", grad: "g4" },
-  { id: "dental", icon: "🦷", key: "cat_dental", grad: "g5" },
-  { id: "supplies", icon: "🧤", key: "cat_supplies", grad: "g6" }
+  { id: "diagnostics", door: "home", icon: "🩺", key: "cat_diagnostics", grad: "g1" },
+  { id: "respiratory", door: "home", icon: "🫁", key: "cat_respiratory", grad: "g2" },
+  { id: "mobility", door: "home", icon: "🦽", key: "cat_mobility", grad: "g3" },
+  { id: "homecare", door: "home", icon: "🛏️", key: "cat_homecare", grad: "g4" },
+  { id: "dental", door: "clinic", icon: "🦷", key: "cat_dental", grad: "g5" },
+  { id: "supplies", door: "clinic", icon: "🧤", key: "cat_supplies", grad: "g6" }
 ];
 
 window.TJZ_PRODUCTS = [
