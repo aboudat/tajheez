@@ -91,12 +91,12 @@
     var route = (location.hash || "#/").split("?")[0];
     document.getElementById("header").innerHTML =
       '<div class="header-inner">' +
-        '<a href="#/" class="logo"><span class="logo-mark">⚕</span><span>' + esc(t("brand")) + "</span></a>" +
-        '<div class="search-wrap"><span class="search-ic">🔎</span>' +
+        '<a href="#/" class="logo">' + esc(t("brand")) + "</a>" +
+        '<div class="search-wrap"><svg class="search-ic" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5"/></svg>' +
           '<input id="search-input" type="search" placeholder="' + esc(t("search_ph")) + '" autocomplete="off"></div>' +
         '<div class="header-actions">' +
           '<button class="lang-btn" id="lang-toggle">' + (window.TJZ_LANG === "en" ? "عربي" : "English") + "</button>" +
-          '<a class="icon-btn" href="#/cart">🛒 <span>' + esc(t("cart")) + "</span>" +
+          '<a class="icon-btn" href="#/cart"><span>' + esc(t("cart")) + "</span>" +
             (cartCount() ? '<span class="cart-badge">' + cartCount() + "</span>" : "") + "</a>" +
         "</div>" +
       "</div>" +
@@ -129,7 +129,7 @@
     document.getElementById("footer").innerHTML =
       '<div class="footer-inner">' +
         "<div>" +
-          '<div class="f-brand">⚕ ' + esc(t("brand")) + "</div>" +
+          '<div class="f-brand">' + esc(t("brand")) + "</div>" +
           '<p class="f-about">' + esc(t("footer_about")) + "</p>" +
         "</div>" +
         "<div><h4>" + esc(t("footer_shop")) + "</h4>" +
@@ -153,15 +153,21 @@
   // ---------- product card ----------
   function cardHTML(p) {
     var lp = L(p);
-    var badge = p.badge ? '<span class="badge ' + p.badge + '">' + esc(t(p.badge === "new" ? "new_badge" : p.badge)) + "</span>" : "";
+    var badge = p.badge ? ' · <span class="badge ' + p.badge + '">' + esc(t(p.badge === "new" ? "new_badge" : p.badge)) + "</span>" : "";
     return '<div class="card">' +
-      '<a href="#/product/' + p.id + '" class="card-img ' + p.grad + '">' + badge + p.icon + "</a>" +
+      '<a href="#/product/' + p.id + '" class="card-img" aria-hidden="true" tabindex="-1">' + p.icon + "</a>" +
       '<div class="card-body">' +
+        '<div class="card-meta">' + esc(catName(p.cat)) + badge + "</div>" +
         '<a href="#/product/' + p.id + '"><h3>' + esc(lp.name) + "</h3></a>" +
-        '<div class="price-row"><span class="price">' + fmt(p.price) + "</span>" +
-          (p.oldPrice ? '<span class="old-price">' + fmt(p.oldPrice) + "</span>" : "") + "</div>" +
-        '<button class="btn btn-teal" data-add="' + p.id + '">🛒 ' + esc(t("add_to_cart")) + "</button>" +
+        (lp.specs && lp.specs.length ? '<p class="card-spec">' + esc(lp.specs[0]) + "</p>" : "") +
+        priceRow(p) +
+        '<button class="btn btn-outline" data-add="' + p.id + '">' + esc(t("add_to_cart")) + "</button>" +
       "</div></div>";
+  }
+  function priceRow(p) {
+    return '<div class="price-row"><span class="price">' + fmt(p.price) + "</span>" +
+      (p.oldPrice ? '<span class="old-price">' + fmt(p.oldPrice) + '</span><span class="off" dir="ltr">−' +
+        Math.round((1 - p.price / p.oldPrice) * 100) + "%</span>" : "") + "</div>";
   }
   function bindCards(root) {
     root.querySelectorAll("[data-add]").forEach(function (b) {
@@ -172,34 +178,36 @@
   // ---------- views ----------
   function viewHome(main) {
     var best = P.slice().sort(function (a, b) { return b.pop - a.pop; }).slice(0, 8);
-    var fresh = P.filter(function (p) { return p.badge === "new" || p.badge === "sale"; }).slice(0, 4);
+    var fresh = P.filter(function (p) {
+      return (p.badge === "new" || p.badge === "sale") && best.indexOf(p) === -1;
+    }).slice(0, 4);
     main.innerHTML =
-      '<section class="hero"><div class="hero-inner"><div>' +
+      '<section class="hero"><div class="hero-inner">' +
         "<h1>" + esc(t("hero_title")) + "</h1>" +
         "<p>" + esc(t("hero_sub")) + "</p>" +
         '<div class="hero-ctas">' +
           '<a href="#/shop" class="btn btn-primary" id="hero-cta">' + esc(t("hero_cta")) + "</a>" +
-          '<a href="#home-cats" class="btn btn-ghost">' + esc(t("hero_cta2")) + "</a>" +
-        "</div></div>" +
-        '<div class="hero-art">🩺</div>' +
+          '<a href="#home-cats" class="text-link">' + esc(t("hero_cta2")) + "</a>" +
+        "</div>" +
       "</div></section>" +
-      '<div class="usps">' +
-        [["🚚", "usp1"], ["✅", "usp2"], ["💵", "usp3"], ["👨‍⚕️", "usp4"]].map(function (u) {
-          return '<div class="usp"><span class="ic">' + u[0] + "</span><div><b>" + esc(t(u[1] + "_t")) + "</b><span>" + esc(t(u[1] + "_d")) + "</span></div></div>";
+      '<ul class="usps">' +
+        ["usp1", "usp2", "usp3", "usp4"].map(function (u) {
+          return "<li><b>" + esc(t(u + "_t")) + "</b><span>" + esc(t(u + "_d")) + "</span></li>";
         }).join("") +
-      "</div>" +
+      "</ul>" +
       '<section class="section" id="home-cats">' +
         '<div class="section-head"><h2>' + esc(t("cats_title")) + "</h2></div>" +
-        '<div class="cat-grid">' + CATS.map(function (c) {
-          return '<a class="cat-tile" href="#/shop?cat=' + c.id + '"><span class="ic ' + c.grad + '">' + c.icon + "</span><b>" + esc(t(c.key)) + "</b></a>";
-        }).join("") + "</div>" +
+        '<ul class="cat-index">' + CATS.map(function (c) {
+          var n = P.filter(function (p) { return p.cat === c.id; }).length;
+          return '<li><a href="#/shop?cat=' + c.id + '"><span>' + esc(t(c.key)) + '</span><span class="n">' + n + "</span></a></li>";
+        }).join("") + "</ul>" +
       "</section>" +
       '<section class="section">' +
-        '<div class="section-head"><h2>' + esc(t("featured_title")) + '</h2><a href="#/shop">' + esc(t("view_all")) + " →</a></div>" +
+        '<div class="section-head"><h2>' + esc(t("featured_title")) + '</h2><a href="#/shop">' + esc(t("view_all")) + (window.TJZ_LANG === "ar" ? " ←" : " →") + "</a></div>" +
         '<div class="grid">' + best.map(cardHTML).join("") + "</div>" +
       "</section>" +
       '<section class="section">' +
-        '<div class="section-head"><h2>' + esc(t("new_title")) + '</h2><a href="#/shop">' + esc(t("view_all")) + " →</a></div>" +
+        '<div class="section-head"><h2>' + esc(t("new_title")) + '</h2><a href="#/shop">' + esc(t("view_all")) + (window.TJZ_LANG === "ar" ? " ←" : " →") + "</a></div>" +
         '<div class="grid">' + fresh.map(cardHTML).join("") + "</div>" +
       "</section>";
     bindCards(main);
@@ -243,7 +251,7 @@
             "</select>" +
           "</div>" +
           (list.length ? '<div class="grid">' + list.map(cardHTML).join("") + "</div>"
-            : '<div class="empty-state"><div class="ic">🔍</div><p>' + esc(t("no_results")) + "</p></div>") +
+            : '<div class="empty-state"><p>' + esc(t("no_results")) + "</p></div>") +
         "</div>" +
       "</div></section>";
     bindCards(main);
@@ -267,17 +275,16 @@
     var related = P.filter(function (x) { return x.cat === p.cat && x.id !== p.id; }).slice(0, 4);
     main.innerHTML =
       '<section class="section"><div class="product-layout">' +
-        '<div class="product-hero ' + p.grad + '">' + p.icon + "</div>" +
+        '<div class="product-hero">' + p.icon + "</div>" +
         '<div class="product-info">' +
           '<a href="#/shop?cat=' + p.cat + '" class="link-muted">' + esc(catName(p.cat)) + "</a>" +
           "<h1>" + esc(lp.name) + "</h1>" +
-          '<div class="price-row"><span class="price">' + fmt(p.price) + "</span>" +
-            (p.oldPrice ? '<span class="old-price">' + fmt(p.oldPrice) + "</span>" : "") + "</div>" +
-          '<div class="pay-hint">💵 ' + esc(t("usp3_t")) + " · 🚚 " + esc(t("usp1_d")) + "</div>" +
+          priceRow(p) +
+          '<div class="pay-hint">' + esc(t("usp3_t")) + " · " + esc(t("usp1_d")) + "</div>" +
           '<div class="qty-row"><div class="qty-ctl">' +
             '<button id="q-minus">−</button><span id="q-val">1</span><button id="q-plus">+</button>' +
           "</div></div>" +
-          '<button class="btn btn-primary btn-block" id="pdp-add">🛒 ' + esc(t("add_to_cart")) + "</button>" +
+          '<button class="btn btn-primary btn-block" id="pdp-add">' + esc(t("add_to_cart")) + "</button>" +
           '<div class="specs"><h4>' + esc(t("specs_title")) + "</h4><ul>" +
             lp.specs.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") +
           "</ul></div>" +
@@ -301,7 +308,7 @@
     var c = getCart();
     track("view_cart", { cart_size: cartCount(), cart_value: +cartSubtotal().toFixed(2) });
     if (!c.length) {
-      main.innerHTML = '<section class="section"><div class="empty-state"><div class="ic">🛒</div>' +
+      main.innerHTML = '<section class="section"><div class="empty-state">' +
         "<p>" + esc(t("cart_empty")) + "</p>" +
         '<a href="#/shop" class="btn btn-teal">' + esc(t("cart_empty_cta")) + "</a></div></section>";
       return;
@@ -315,7 +322,7 @@
           var p = byId(i.id); if (!p) return "";
           var lp = L(p);
           return '<div class="cart-item">' +
-            '<a href="#/product/' + p.id + '" class="thumb ' + p.grad + '">' + p.icon + "</a>" +
+            '<a href="#/product/' + p.id + '" class="thumb">' + p.icon + "</a>" +
             "<div><h4>" + esc(lp.name) + '</h4><span class="unit">' + fmt(p.price) + "</span></div>" +
             '<div class="line-end">' +
               '<div class="qty-ctl">' +
@@ -409,7 +416,7 @@
           methods.map(function (m, i) {
             return '<label class="pay-option' + (i === 0 ? " selected" : "") + '" data-pay="' + m.id + '">' +
               '<input type="radio" name="pay" value="' + m.id + '" ' + (i === 0 ? "checked" : "") + ">" +
-              '<span class="pay-ic">' + m.ic + "</span>" +
+              
               "<span><b>" + esc(t(m.t)) + "</b><span>" + esc(t(m.d)) + "</span></span></label>";
           }).join("") +
           '<button class="btn btn-primary btn-block" id="place-order" style="margin-top:10px">' + esc(t("place_order")) + " · " + fmt(total) + "</button>" +
@@ -444,7 +451,7 @@
       track("order_wall_shown", { method: method, cart_value: +total.toFixed(2) });
       var root = document.getElementById("overlay-root");
       root.innerHTML = '<div class="overlay"><div class="modal">' +
-        '<div class="big-ic">⏳</div>' +
+        
         "<h3>" + esc(t("fail_title")) + "</h3>" +
         "<p>" + esc(t("fail_msg")) + "</p>" +
         '<input id="lead-contact" placeholder="' + esc(t("fail_contact")) + '" value="' + esc(saved.phone || "") + '">' +
@@ -458,7 +465,7 @@
           cart_value: +total.toFixed(2), city: saved.city || "", items: cartSnapshot()
         });
         root.innerHTML = '<div class="overlay"><div class="modal">' +
-          '<div class="big-ic">✅</div><h3>' + esc(t("lead_thanks_t")) + "</h3>" +
+          '<h3>' + esc(t("lead_thanks_t")) + "</h3>" +
           '<p style="text-align:center">' + esc(t("lead_thanks_m")) + "</p>" +
           '<a href="#/shop" class="btn btn-teal btn-block" id="thanks-close">' + esc(t("continue_shopping")) + "</a>" +
         "</div></div>";
